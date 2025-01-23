@@ -5,7 +5,7 @@ const protectRoute = async (req, res, next) => {
 	try {
 		
 		const token = req.cookies.jwt;
-		console.log(token)
+		// console.log(token)
 
 		// console.log(token)
 		if (!token) {
@@ -17,12 +17,12 @@ const protectRoute = async (req, res, next) => {
 		if (!decoded) {
 			return res.status(401).json({ error: "Unauthorized - Invalid Token" });
 		}
-		console.log("___________",decoded)
+		// console.log("___________",decoded)
 
 		const user = await User.findById(decoded.userId).select("-password");
 
 
-		console.log(user)
+		// console.log(user)
 
 		if (!user) {
 			return res.status(404).json({ error: "User not found" });
